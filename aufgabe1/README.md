@@ -9,12 +9,12 @@
     - Englisch: http://downloads.dbpedia.org/2016-04/core-i18n/en/long_abstracts_en.ttl.bz2 (742MB)
 
 ##### Aufbau:
-`<http://de.dbpedia.org/resource/Aussagenlogik>` `<http://dbpedia.org/ontology/abstract>`
-"Die Aussagenlogik ist ein Teilgebiet der Logik, das sich mit Aussagen
+`<http://de.dbpedia.org/resource/Aussagenlogik>` `<http://dbpedia.org/ontology/abstract>`  
+"Die Aussagenlogik ist ein Teilgebiet der Logik, das sich mit Aussagen  
 [...]."@de .
 
-`<http://de.dbpedia.org/resource/Alan_Smithee>` `<http://dbpedia.org/ontology/abstract>`
-"Alan Smithee steht als Pseudonym f\u00FCr einen fiktiven Regisseur, der ilme verantwortet,
+`<http://de.dbpedia.org/resource/Alan_Smithee>` `<http://dbpedia.org/ontology/abstract>`  
+"Alan Smithee steht als Pseudonym f\u00FCr einen fiktiven Regisseur, der ilme verantwortet,  
 [...]."@de .
 
 Jede Zeile startet mit `<Ressource-URI>` und endet mit „.“
