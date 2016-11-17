@@ -59,12 +59,32 @@ for term in query_or_split:
     query_and_split = term.split (' AND ')
     print("query and split", query_and_split)
     and_set = set()
+    not_set = set()
     for andterm in query_and_split:
-        if andterm in inverted_dict.keys():
-            if not and_set:
-                and_set.update(set(inverted_dict[andterm]))
-            else:
-                and_set.intersection_update(set(inverted_dict[andterm]))
+        query_not_split = None
+        if ' NOT ' in andterm:
+            query_not_split = term.split (' NOT ')
+            print("not split", query_not_split)
+            not_set.add(query_not_split)
+        if 'NOT ' in andterm:
+            query_not_split = andterm.replace('NOT ', "")
+            print("not split", query_not_split)
+            not_set.add(query_not_split)
+        if not query_not_split:
+            if andterm in inverted_dict.keys():
+                if not and_set:
+                    and_set.update(set(inverted_dict[andterm]))
+                else:
+                    and_set.intersection_update(set(inverted_dict[andterm]))
+            #else:
+    print("not set", not_set)
+    for notterm in not_set:
+        for andterm in and_set.copy():
+            if andterm in set(inverted_dict[notterm]):
+                and_set.remove(andterm)
+    print("and_set", and_set)
+
+
             #print("and_set", and_set)
     or_set.update(and_set)
 
