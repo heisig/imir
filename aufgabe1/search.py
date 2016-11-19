@@ -32,21 +32,24 @@
 #for each term as key store all documents that contain it to list as value
 
 # get all tokens out of documents and add to list
-docs = {"0": "eins zwei Drei Vier", "1": " fünf lol heros", "2": "Vier Vier eins heros eins"}
+docs = {"0": "eins zwei Drei Vier", "1": " fünf lol heros", "2": "Vier Vier eins heros eins heros heros"}
 print( "docs", docs)
-list = []
-inverted_dict = {}
-for key in docs:
-    tokens = docs.get(key).split(' ')  #need extraction of letters and numbers
-    for token in tokens:
-        list.append(token.lower())
-        if token.lower() not in inverted_dict.keys():
-
-             inverted_dict[token.lower()] = []   #for list without duplicates use set!
-        inverted_dict[token.lower()].append(key)
-
-#print("list of tokens", list)
-print("inverted dict", inverted_dict)
+#here building inverted index
+# list = []
+# inverted_dict = {}
+# for key in docs:
+#     tokens = docs.get(key).split(' ')
+#     for token in tokens:
+#         list.append(token.lower())
+#         if token.lower() not in inverted_dict.keys():
+#
+#              inverted_dict[token.lower()] = []   #for list without duplicates use set!
+#         inverted_dict[token.lower()].append(key)
+#
+# #print("list of tokens", list)
+# print("inverted dict", inverted_dict)
+inverted_dict = {'drei': {'0':[2]}, 'eins': {'0':[0], '2':[2,4]}, 'vier': {'0':[3], '2':[0,1]}, 'heros': {'1':[2], '2':[3,5,6]}, 'lol': {'1':[1]}, 'fünf': {'1':[0]}, 'zwei': {'0':[1]}}
+print("inverted dict ", inverted_dict)
 
 
 query= input("Your Query: ")
@@ -57,39 +60,40 @@ or_set = set()
 for term in query_or_split:
     #and splitting
     query_and_split = term.split (' AND ')
-    print("query and split", query_and_split)
+    #print("query and split", query_and_split)
     and_set = set()
     not_set = set()
     for andterm in query_and_split:
         query_not_split = None
         if ' NOT ' in andterm:
             query_not_split = term.split (' NOT ')
-            print("not split", query_not_split)
+            #print("not split", query_not_split)
             not_set.add(query_not_split)
         if 'NOT ' in andterm:
             query_not_split = andterm.replace('NOT ', "")
-            print("not split", query_not_split)
+            #print("not split", query_not_split)
             not_set.add(query_not_split)
         if not query_not_split:
             if andterm in inverted_dict.keys():
                 if not and_set:
-                    and_set.update(set(inverted_dict[andterm]))
+                    and_set.update(set(inverted_dict[andterm].keys()))
                 else:
-                    and_set.intersection_update(set(inverted_dict[andterm]))
+                    and_set.intersection_update(set(inverted_dict[andterm].keys()))
             #else:
-    print("not set", not_set)
+    #print("not set", not_set)
     for notterm in not_set:
         for andterm in and_set.copy():
-            if andterm in set(inverted_dict[notterm]):
+            if andterm in set(inverted_dict[notterm].keys()):
                 and_set.remove(andterm)
-    print("and_set", and_set)
+    #print("and_set", and_set)
 
 
             #print("and_set", and_set)
     or_set.update(and_set)
 
-print(" query answer: ", or_set)   #prints query with OR and AND. Needed case to print only AND
-
+print("query answer: ids of found sources: ", or_set)   #prints query with OR and AND. Needed case to print only AND
+print("query answer: number of found sources: ", len(or_set))
+print("query answer: number of occurrences: toDo" )
 #only OR
 # query= input("Your Query: ")
 # # precedence: or--> and--> not
