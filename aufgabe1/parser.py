@@ -1,4 +1,5 @@
 import re
+import pickle
 from collections import namedtuple
 
 Entry = namedtuple('Entry', 'id URI abstract')
@@ -41,9 +42,13 @@ if __name__ == '__main__':
             else:
                 glossary[word] = {docID : [position]}
 
-    with open('output.txt', 'w', encoding='utf-8') as output:
-        for key, value in glossary.items():
-            output.write('%s:' % key)
-            for key2, value2 in value.items():
-                output.write('(%s:' % key2 + ','.join(str(x) for x in value2) + ')')
-            output.write('\n')
+    with open('output.txt', 'wb') as output:
+        pickle.dump(glossary, output)
+#         output.write(str(glossary))
+#        output.write('{')
+#        for key, value in glossary.items():
+#            output.write('\'%s\':{' % key)
+#            for key2, value2 in value.items():
+#                output.write('\'%s\':' % key2 + '[' + ','.join(str(x) for x in value2) + ']')
+#            output.write('}\n')
+#        output.write('}')

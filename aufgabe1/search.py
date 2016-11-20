@@ -1,3 +1,5 @@
+import pickle
+
 # für jedes recherchierbare Wort Position im
 # Datenbestand in einen Index eintragen
 
@@ -30,10 +32,6 @@
 
 #build list of terms (collect documents, turn each document into list of tokens, normalize tokes
 #for each term as key store all documents that contain it to list as value
-
-# get all tokens out of documents and add to list
-docs = {"0": "eins zwei Drei Vier", "1": " fünf lol heros", "2": "Vier Vier eins heros eins heros heros"}
-print( "docs", docs)
 #here building inverted index
 # list = []
 # inverted_dict = {}
@@ -48,8 +46,9 @@ print( "docs", docs)
 #
 # #print("list of tokens", list)
 # print("inverted dict", inverted_dict)
-inverted_dict = {'drei': {'0':[2]}, 'eins': {'0':[0], '2':[2,4]}, 'vier': {'0':[3], '2':[0,1]}, 'heros': {'1':[2], '2':[3,5,6]}, 'lol': {'1':[1]}, 'fünf': {'1':[0]}, 'zwei': {'0':[1]}}
-print("inverted dict ", inverted_dict)
+print("Loading data...")
+inverted_dict = pickle.load(open('output.txt', 'rb'),encoding="utf-8")
+#print("inverted dict ", inverted_dict)
 
 
 query= input("Your Query: ")
