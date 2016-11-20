@@ -29,8 +29,9 @@ if __name__ == '__main__':
     re_word = re.compile('\w+', re.UNICODE)
     for entry in entries:
         words = re_word.findall(entry.abstract)
-        words = [word.lower() for word in words]
+        #words = [word.lower() for word in words]
         for word in words:
+            word = word.lower();
             if word in glossary:
                 glossary[word].append(entry.id)
             else:
