@@ -46,7 +46,7 @@ import pickle
 #
 # #print("list of tokens", list)
 # print("inverted dict", inverted_dict)
-print("Loading data...")
+print("Loading data... this may take several minutes depending on the initial file size")
 inverted_dict = pickle.load(open('output.txt', 'rb'),encoding="utf-8")
 #print("inverted dict ", inverted_dict)
 
