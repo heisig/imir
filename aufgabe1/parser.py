@@ -25,20 +25,25 @@ def get_entries(path):
 if __name__ == '__main__':
     entries = get_entries("test.ttl")
 
+    tmp = 1
     glossary = {}
     re_word = re.compile('\w+', re.UNICODE)
     for entry in entries:
         words = re_word.findall(entry.abstract)
-        #words = [word.lower() for word in words]
-        for word in words:
+        for position,word in enumerate(words):
             word = word.lower();
+            docID = entry.id
             if word in glossary:
-                glossary[word].append(entry.id)
+                if docID in glossary[word]:
+                    glossary[word][docID].append(position)
+                else:
+                    glossary[word].update({docID : [position]})
             else:
-                glossary[word] = [entry.id]
+                glossary[word] = {docID : [position]}
 
     with open('output.txt', 'w', encoding='utf-8') as output:
         for key, value in glossary.items():
-            output.write('%s: ' % key)
-            output.write(','.join(str(x) for x in value))
+            output.write('%s:' % key)
+            for key2, value2 in value.items():
+                output.write('(%s:' % key2 + ','.join(str(x) for x in value2) + ')')
             output.write('\n')
