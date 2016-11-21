@@ -26,7 +26,8 @@ def get_entries(path):
 
 #start with the file given here
 if __name__ == '__main__':
-    entries = get_entries("test.ttl")
+    query = input("File name (or location relativ to the current folder): ")
+    entries = get_entries(query)
 
     tmp = 1
     glossary = {}
@@ -51,6 +52,7 @@ if __name__ == '__main__':
     #this may take several minutes (depending on input file size)
     with open('output.txt', 'wb') as output:
         pickle.dump(glossary, output)
+    print("Success. output.txt created.")
 #         output.write(str(glossary))
 #        output.write('{')
 #        for key, value in glossary.items():
