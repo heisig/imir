@@ -54,6 +54,7 @@ if __name__ == '__main__':
     with open('output.txt', 'wb') as output:
         pickle.dump(glossary, output)
     print("Success. output.txt created.")
+    input("Press any key to continue...")
 #         output.write(str(glossary))
 #        output.write('{')
 #        for key, value in glossary.items():

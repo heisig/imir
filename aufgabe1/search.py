@@ -196,3 +196,4 @@ def phrase_search(phrase, dictionary):
 # print (phrase_search(testPhrase, inverted_dict))
 
 binary_search()
+input("Press any key to continue...")
