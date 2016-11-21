@@ -27,6 +27,7 @@ def get_entries(path):
 #start with the file given here
 if __name__ == '__main__':
     query = input("File name (or location relativ to the current folder): ")
+    print("Creating inverted index. This may take several minutes depending on the initial file size.")
     entries = get_entries(query)
 
     tmp = 1
