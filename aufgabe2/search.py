@@ -1,4 +1,6 @@
 from PIL import Image
+import numpy
+import math
 
 
 def rgb_to_ycc((r, g, b)): # in (0,255) range
@@ -18,11 +20,14 @@ def estimate_average_values(list):
     return int(round(sum_y/len(list), 0)), int(round(sum_cb/len(list), 0)), int(round(sum_cr/len(list), 0))
 
 
-
+def alpha(u):
+    if u==0:
+        return math.sqrt(2)/4
+    else:
+        return 0.5
 
 a = Image.open("a.jpg")
 pix = a.load()
-
 
 
 #step 1,2: rgb to ycc, devided in 8x8 fields: ycc_values[matrix_raw, matrix_col] = list of values
@@ -81,3 +86,22 @@ for i in range(0, 8):
         ycc_average_values[(i, j)] = (estimate_average_values(list=ycc_values[(i,j)]))
         print "average ycc in matrix field",   i, j, ":  ", ycc_average_values[(i,j)]
 
+
+
+#step 4: apply DCT --Implementierung der bescheuerten Formel
+
+dct_values_y = numpy.zeros((8,8))
+dct_values_cb = numpy.zeros((8,8))
+dct_values_cr = numpy.zeros((8,8))
+for i in range(0,8):
+    for j in range(0,8):
+        sum_x = 0.0
+        for x in range(0,8):
+            sum_y= 0.0
+            for y in range(0,8):
+                #only for y-value of ycc
+                sum_y = sum_y + ycc_average_values[x,y][0]*math.cos(math.pi*(2*x+1)*i/16)*math.cos(math.pi*(2*x+1)*j/16)
+            sum_x = sum_x + sum_y
+
+        dct_values_y[i,j] = alpha(i)*alpha(j)*sum_x
+print dct_values_y
