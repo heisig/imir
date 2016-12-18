@@ -33,9 +33,10 @@ pictureList = []
 estimate = "time left: ?"
 
 # traverse over the given directory
-for file in glob.glob(pictureDirectory + "/*.jpg"):
+for file in glob.glob(os.path.join(pictureDirectory,"*.jpg")):
+    filename = os.path.basename(file)
     # find matching objects and save its ID (leave out the one with ._ at the start)
-    file = re.match("^" + pictureDirectory + "/([^\.\_]*)\.jpg$", file)
+    file = re.match("([^._]*).jpg$", filename)
     pictureID = file.group(1)
 
     pictureList.append(pictureID)
@@ -43,7 +44,6 @@ for file in glob.glob(pictureDirectory + "/*.jpg"):
 print(str(len(pictureList)) + " pictures found, starting to build the index ...")
 
 for pictureID in pictureList:
-
     if pictureCount != 0:
         splitTime = time.time()
         seconds = splitTime - start
