@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Image>
+  <ObservationId>41811</ObservationId>
+  <MediaId>113208</MediaId>
+  <Content>Fruit</Content>
+  <Author>benoit st-pierre</Author>
+  <Date>2015-3-14</Date>
+  <Location>Chambray-lès-Tours</Location>
+  <Latitude>47.34736</Latitude>
+  <Longitude>0.71857</Longitude>
+  <YearInCLEF>PlantCLEF2016</YearInCLEF>
+  <ObservationId2014 />
+  <ImageId2014 />
+  <LearnTag>Test</LearnTag>
+</Image>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Image>
+  <ObservationId>42347</ObservationId>
+  <MediaId>113206</MediaId>
+  <Content>Leaf</Content>
+  <Author>emilie bernard</Author>
+  <Date>2015-6-10</Date>
+  <Location>Aime</Location>
+  <Latitude>45.55838</Latitude>
+  <Longitude>6.65222</Longitude>
+  <YearInCLEF>PlantCLEF2016</YearInCLEF>
+  <ObservationId2014 />
+  <ImageId2014 />
+  <LearnTag>Test</LearnTag>
+</Image>

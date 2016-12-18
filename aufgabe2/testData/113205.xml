@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Image>
+  <ObservationId>44725</ObservationId>
+  <MediaId>113205</MediaId>
+  <Content>Leaf</Content>
+  <Author>stephane8888</Author>
+  <Date>2015-4-19</Date>
+  <Location>Meyzieu</Location>
+  <Latitude>45.76716</Latitude>
+  <Longitude>5.00797</Longitude>
+  <YearInCLEF>PlantCLEF2016</YearInCLEF>
+  <ObservationId2014 />
+  <ImageId2014 />
+  <LearnTag>Test</LearnTag>
+</Image>

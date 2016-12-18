@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Image>
+  <ObservationId>42998</ObservationId>
+  <MediaId>113210</MediaId>
+  <Content>Stem</Content>
+  <Author>pierre bonnet</Author>
+  <Date>2014-2-9</Date>
+  <Location>Le Pouget</Location>
+  <Latitude>43.58578</Latitude>
+  <Longitude>3.51135</Longitude>
+  <YearInCLEF>PlantCLEF2016</YearInCLEF>
+  <ObservationId2014 />
+  <ImageId2014 />
+  <LearnTag>Test</LearnTag>
+</Image>

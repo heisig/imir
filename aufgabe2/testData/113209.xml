@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Image>
+  <ObservationId>45678</ObservationId>
+  <MediaId>113209</MediaId>
+  <Content>Leaf</Content>
+  <Author>christian semprez</Author>
+  <Date>2014-6-1</Date>
+  <Location>Nangis</Location>
+  <Latitude>48.55759</Latitude>
+  <Longitude>3.01542</Longitude>
+  <YearInCLEF>PlantCLEF2016</YearInCLEF>
+  <ObservationId2014 />
+  <ImageId2014 />
+  <LearnTag>Test</LearnTag>
+</Image>
