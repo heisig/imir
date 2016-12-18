@@ -1,0 +1,32 @@
+.container {
+}
+.content {
+  min-height: 5500px;
+}
+#sidebar-outer {
+  position: relative;
+}
+#sidebar {
+   position: fixed;
+   width: 100%;
+}
+@media (min-width: 768px) {
+  #sidebar {
+    width: 316px;
+  }
+}
+@media (min-width: 992px) {
+  #sidebar {
+    width: 426px;
+  }
+}
+@media (min-width: 1200px) {
+  #sidebar {
+    width: 526px;
+  }
+} 
+
+img {
+  margin-bottom: 20px;
+  max-height: 600px !important;
+}
