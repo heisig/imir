@@ -25,8 +25,8 @@ def alpha(u):
 
 start = time.time()
 
-#pictureDirectory = "PlantCLEF2016Test"
-pictureDirectory = "testData"
+pictureDirectory = "PlantCLEF2016Test"
+#pictureDirectory = "testData"
 pictureCount = 0
 index = {}
 pictureList = []
@@ -72,40 +72,9 @@ for pictureID in pictureList:
     xBlockSize = picture.width / 8
     yBlockSize = picture.height / 8
     for x in range(0, picture.width):
-        if x<xBlockSize:
-            i = 0
-        elif x >=xBlockSize and x< 2*xBlockSize:
-            i = 1
-        elif x >= 2*xBlockSize and x < 3 * xBlockSize:
-            i = 2
-        elif x >= 3*xBlockSize and x < 4 * xBlockSize:
-            i = 3
-        elif x >= 4*xBlockSize and x < 5 * xBlockSize:
-            i = 4
-        elif x >= 5*xBlockSize and x < 6 * xBlockSize:
-            i = 5
-        elif x >= 6*xBlockSize and x < 7 * xBlockSize:
-            i = 6
-        elif x >= 7*xBlockSize and x < 8 * xBlockSize:
-            i = 7
-
+        i = x // xBlockSize
         for y in range(0,picture.height):
-            if y<yBlockSize:
-                j = 0
-            elif y >=yBlockSize and y< 2*yBlockSize:
-                j = 1
-            elif y >= 2*yBlockSize and y < 3 * yBlockSize:
-                j = 2
-            elif y >= 3*yBlockSize and y < 4 * yBlockSize:
-                j = 3
-            elif y >= 4*yBlockSize and y < 5 * yBlockSize:
-                j = 4
-            elif y >= 5*yBlockSize and y < 6 * yBlockSize:
-                j = 5
-            elif y >= 6*yBlockSize and y < 7 * yBlockSize:
-                j = 6
-            elif y >= 7*yBlockSize and y < 8 * yBlockSize:
-                j = 7
+            j = y // yBlockSize
 
             if (i, j) not in ycc_values.keys():
                 ycc_values[(i, j)] = []
@@ -145,10 +114,6 @@ for pictureID in pictureList:
             dct_values_y[i,j] = alpha(i)*alpha(j)*sum_x_y
             dct_values_cb[i,j] = alpha(i)*alpha(j)*sum_x_cb
             dct_values_cr[i,j] = alpha(i)*alpha(j)*sum_x_cr
-
-    #print(dct_values_y)
-    #print(dct_values_cb)
-    #print(dct_values_cr)
 
     # adding the DC and AC coefficients as a tuple
     dctValues = (
