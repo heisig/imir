@@ -43,6 +43,7 @@ for file in glob.glob(os.path.join(pictureDirectory,"*.jpg")):
 
 print(str(len(pictureList)) + " pictures found, starting to build the index ...")
 
+
 for pictureID in pictureList:
     if pictureCount != 0:
         splitTime = time.time()
@@ -62,58 +63,53 @@ for pictureID in pictureList:
     for content in root.findall('Content'):
         category = content.text
         #print(category)
-
+    
     picture = Image.open(pictureDirectory + "/" + pictureID + ".jpg")
     pix = picture.load()
 
     #step 1,2: rgb to ycc, devided in 8x8 fields: ycc_values[matrix_raw, matrix_col] = list of values
     ycc_values={}
-    for x in range(0, picture.size[0]):
-        for y in range(0,picture.size[1]):
-            #ycc_values[x,y]=rgb_to_ycc(pix[x,y])
-            #for i in range(0,8):
-            #    for j in range(0,8):
-            if x<picture.size[0]/8:
-                i = 0
-            elif x >=picture.size[0] / 8 and x< 2*picture.size[0]/8:
-                i = 1
-            elif x >= 2*picture.size[0] / 8 and x < 3 * picture.size[0] / 8:
-                i = 2
-            elif x >= 3*picture.size[0] / 8 and x < 4 * picture.size[0] / 8:
-                i = 3
-            elif x >= 4*picture.size[0] / 8 and x < 5 * picture.size[0] / 8:
-                i = 4
-            elif x >= 5*picture.size[0] / 8 and x < 6 * picture.size[0] / 8:
-                i = 5
-            elif x >= 6*picture.size[0] / 8 and x < 7 * picture.size[0] / 8:
-                i = 6
-            elif x >= 7*picture.size[0] / 8 and x < 8 * picture.size[0] / 8:
-                i = 7
+    xBlockSize = picture.width / 8
+    yBlockSize = picture.height / 8
+    for x in range(0, picture.width):
+        if x<xBlockSize:
+            i = 0
+        elif x >=xBlockSize and x< 2*xBlockSize:
+            i = 1
+        elif x >= 2*xBlockSize and x < 3 * xBlockSize:
+            i = 2
+        elif x >= 3*xBlockSize and x < 4 * xBlockSize:
+            i = 3
+        elif x >= 4*xBlockSize and x < 5 * xBlockSize:
+            i = 4
+        elif x >= 5*xBlockSize and x < 6 * xBlockSize:
+            i = 5
+        elif x >= 6*xBlockSize and x < 7 * xBlockSize:
+            i = 6
+        elif x >= 7*xBlockSize and x < 8 * xBlockSize:
+            i = 7
 
-            if y<picture.size[1]/8:
+        for y in range(0,picture.height):
+            if y<yBlockSize:
                 j = 0
-            elif y >=picture.size[1] / 8 and y< 2*picture.size[1]/8:
+            elif y >=yBlockSize and y< 2*yBlockSize:
                 j = 1
-            elif y >= 2*picture.size[1] / 8 and y < 3 * picture.size[1] / 8:
+            elif y >= 2*yBlockSize and y < 3 * yBlockSize:
                 j = 2
-            elif y >= 3*picture.size[1] / 8 and y < 4 * picture.size[1] / 8:
+            elif y >= 3*yBlockSize and y < 4 * yBlockSize:
                 j = 3
-            elif y >= 4*picture.size[1] / 8 and y < 5 * picture.size[1] / 8:
+            elif y >= 4*yBlockSize and y < 5 * yBlockSize:
                 j = 4
-            elif y >= 5*picture.size[1] / 8 and y < 6 * picture.size[1] / 8:
+            elif y >= 5*yBlockSize and y < 6 * yBlockSize:
                 j = 5
-            elif y >= 6*picture.size[1] / 8 and y < 7 * picture.size[1] / 8:
+            elif y >= 6*yBlockSize and y < 7 * yBlockSize:
                 j = 6
-            elif y >= 7*picture.size[1] / 8 and y < 8 * picture.size[1] / 8:
+            elif y >= 7*yBlockSize and y < 8 * yBlockSize:
                 j = 7
 
             if (i, j) not in ycc_values.keys():
                 ycc_values[(i, j)] = []
             ycc_values[(i,j)].append(rgb_to_ycc(pix[x,y][0], pix[x,y][1], pix[x,y][2]))
-
-
-
-
 
     #step 3: estimate dominant (average) color of each matrix field
     ycc_average_values ={}
@@ -121,8 +117,6 @@ for pictureID in pictureList:
          for j in range(0,8):
             ycc_average_values[(i, j)] = (estimate_average_values(list=ycc_values[(i,j)]))
             #print("average ycc in matrix field",   i, j, ":  ", ycc_average_values[(i,j)])
-
-
 
     #step 4: apply DCT
     dct_values_y = numpy.zeros((3,3))

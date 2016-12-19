@@ -3,12 +3,13 @@ import pickle
 import webbrowser
 import xml.etree.ElementTree
 
+base_path = "PlantCLEF2016Test"
+#base_path = "testData"
 
 def search(search_id, num_closest):
     with open("index.txt", "rb") as index_file:
         index = pickle.load(index_file)
-
-    base_path = "testData"
+        
     root = xml.etree.ElementTree.parse(
         os.path.join(base_path, search_id + ".xml")
     ).getroot()
@@ -44,7 +45,6 @@ with open("results_template.html", "r") as template, \
     open("results.html", "w") as output:
     text = template.read()
 
-    base_path = "testData"
     search_image_path = os.path.join(base_path, search_id + ".jpg")
     search_tag = '<img class="img-responsive" src="{0}">'.format(search_image_path)
 
